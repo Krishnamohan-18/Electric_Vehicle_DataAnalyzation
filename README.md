@@ -7,12 +7,12 @@ This project explores and analyzes electric vehicle registration and population 
 3.Use data visualization to make insights actionable.  
 # Dataset  
 **Source**:Kaggle  
- **Tools Used**  
-- Python (Pandas, Matplotlib, Seaborn)   
-- Jupyter Notebook  
-**Task 1.**  DataSetup  
-  ``` python
-  !pip install pandas 
+ **Tools Used**    
+- Python (Pandas, Matplotlib, Seaborn)     
+- Jupyter Notebook    
+**Task 1.**  DataSetup    
+  ```python  
+!pip install pandas  
 !pip install numpy 
 import matplotlib.pyplot as plt 
 import seaborn as sns
