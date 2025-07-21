@@ -11,16 +11,16 @@ This project explores and analyzes electric vehicle registration and population 
 - Python (Pandas, Matplotlib, Seaborn)       
 - Jupyter Notebook     
 **Task 1.**  DataSetup    
-  ```python  
+```python  
 !pip install pandas  
 !pip install numpy 
 import matplotlib.pyplot as plt 
-import seaborn as sns
-import pandas as pd 
-import numpy as np
-df = pd.read_csv("Electric_Vehicle_Population_Data.csv")
-df.info()
-  ```
+import seaborn as sns  
+import pandas as pd  
+import numpy as np  
+df = pd.read_csv("Electric_Vehicle_Population_Data.csv")  
+df.info()  
+```
   
 
 
