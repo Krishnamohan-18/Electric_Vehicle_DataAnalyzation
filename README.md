@@ -8,8 +8,8 @@ This project explores and analyzes electric vehicle registration and population 
 # Dataset  
 **Source**:Kaggle  
  **Tools Used**    
-- Python (Pandas, Matplotlib, Seaborn)     
-- Jupyter Notebook    
+- Python (Pandas, Matplotlib, Seaborn)       
+- Jupyter Notebook     
 **Task 1.**  DataSetup    
   ```python  
 !pip install pandas  
