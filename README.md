@@ -7,24 +7,21 @@ This project explores and analyzes electric vehicle registration and population 
 3.Use data visualization to make insights actionable.  
 # Dataset  
 **Source**:Kaggle  
-**columns:**
-0   VIN (1-10)                                           
- 1   County                                              
- 2   City                                                
- 3   State                                              
- 4   Postal Code                                         
- 5   Model Year                                           
- 6   Make                                                
- 7   Model                                               
- 8   Electric Vehicle Type                               
- 9   Clean Alternative Fuel Vehicle (CAFV) Eligibility   
- 10  Electric Range                                     
- 11  Base MSRP                                          
- 12  Legislative District                               
- 13  DOL Vehicle ID                                      
- 14  Vehicle Location                                    
- 15  Electric Utility                                    
- 16  2020 Census Tract                                
+ **Tools Used**  
+- Python (Pandas, Matplotlib, Seaborn)  
+- Jupyter Notebook
+**Task 1.**  DataSetup
+  ``` python
+  !pip install pandas 
+!pip install numpy 
+import matplotlib.pyplot as plt 
+import seaborn as sns
+import pandas as pd 
+import numpy as np
+df = pd.read_csv("Electric_Vehicle_Population_Data.csv")
+df.info()
+  ```
+  
 
 
   
