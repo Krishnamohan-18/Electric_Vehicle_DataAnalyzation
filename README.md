@@ -81,15 +81,15 @@ EV_cleaned = df.drop_duplicates(subset=["VIN (1-10)"],keep = 'first')
 ```
 **Task 4.Data Exploration Questions**  
 1.What are the top 5 most common EV makes and models in the dataset?  
-````python
-top_make_model = df.groupby(["Make","Model"]).size().reset_index(name="count")   
- top_5_ev_models = top_make_model.sort_values(by="count",ascending = False).head(5)    
- top_5_ev_models   
-```
-2.What is the distribution of EVs by county? Which county has the most registrations
 ```python  
-county = df["County"].value_counts()
-most_ev_county = county.idxmax()
+top_make_model = df.groupby(["Make","Model"]).size().reset_index(name="count")   
+ top_5_ev_models = top_make_model.sort_values(by="count",ascending = False).head(5)  
+ top_5_ev_models  
+```
+2.What is the distribution of EVs by county? Which county has the most registrations  
+```python  
+county = df["County"].value_counts()  
+most_ev_county = county.idxmax()  
 ```
 3.What is the average electric range of EVs in the dataset?  
 ```python  
@@ -98,7 +98,7 @@ df.loc[df['Electric Range'] == 0, 'Electric Range'] = np.nan
 zero_count = (df["Electric Range"]==0).sum()  
 zero_count  
 df["Electric Range"].isna().sum()  
-median_value=(df.loc[df["Electric Range"]>0,"Electric Range"].median())  
+median_value=(df.loc[df["Electric Range"]>0,"Electric Range"].median())   
 if not np.isnan(median_value):  
     df["Electric Range"].fillna(median_value,inplace = True)  
 else:  
