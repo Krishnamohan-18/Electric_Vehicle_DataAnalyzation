@@ -33,8 +33,8 @@ df.tail()
 1.How many missing values exist in the dataset, and in which columns? 
 ```python
 total_missing_values = df.isna().sum().sum()  
-missing_values _in each column = df.isna().sum()  
-missing_values _in each column [missing_values _in each column>0]  
+missing_values_in_each_column = df.isna().sum()  
+missing_values_in_each_column [missing_values_in_each_column>0]  
 ```
 2.How should missing or zero values in the Base MSRP and Electric Range columns be handled.  
  **Base MSRP - Missing Values Handling**  
@@ -69,7 +69,8 @@ median_value=(df.loc[df["Electric Range"]>0,"Electric Range"].median())
 if not np.isnan(median_value):  
     df["Electric Range"].fillna(median_value,inplace = True)  
 else:  
-    print("error:median is NAN  Value")  
+    print("error:median is NAN  Value")
+print("after handling zero values meadin value is:",median_value)  
 
  ```
  **Duplicates in Dataset**  
@@ -103,11 +104,11 @@ if not np.isnan(median_value):
     df["Electric Range"].fillna(median_value,inplace = True)  
 else:  
     print("error:median is NAN  Value")  
-print(df["Electric Range"].mean())  
+print("average electric range:",df["Electric Range"].mean())  
 ```
 5.What percentage of EVs are eligible for Clean Alternative Fuel Vehicle (CAFV) incentives?  
 ```python
-df[" Clean Alternative Fuel Vehicle (CAFV) Eligibility"].value_counts()
+df["Clean Alternative Fuel Vehicle (CAFV) Eligibility"].value_counts()
 eligible_count = df[df["Clean Alternative Fuel Vehicle (CAFV) Eligibility"]=="Clean Alternative Fuel Vehicle Eligible"].shape[0]  
 total_count = df.shape[0]  
 elibible_percentage = (eligible_count/total_count)*100  
@@ -115,8 +116,8 @@ elibible_percentage
 ```
 6. What is the average Base MSRP for each EV model?
  ```python
-msrp_stats = df.groupby(["Make","Mode"]("Base MSRP").mean().reset_index(name="Mean")  
-msrp_stats  
+msrp_stats = df.groupby(["Make","Model"])["Base MSRP"].mean().reset_index()  
+msrp_stats   
 ```
 **Task.5 Data Visualization Questions**  
 1. Create a bar chart showing the top 5 EV makes and models by count.
