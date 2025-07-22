@@ -88,8 +88,8 @@ top_make_model = df.groupby(["Make","Model"]).size().reset_index(name="count")
 ```
 2.What is the distribution of EVs by county? Which county has the most registrations  
 ```python  
-county = df["County"].value_counts()  
-most_ev_county = county.idxmax()  
+ev_by_county = df.groupby("County").size().reset_index(name = "EV count")  
+ev_by_county["EV count"].max()  
 ```
 3.What is the average electric range of EVs in the dataset?  
 ```python  
@@ -115,7 +115,7 @@ elibible_percentage
 ```
 6. What is the average Base MSRP for each EV model?
  ```python
-msrp_stats = df.groupby(["Make".,"Mode"]("Base MSRP").mean().reset_index()  
+msrp_stats = df.groupby(["Make","Mode"]("Base MSRP").mean().reset_index(name="Mean")  
 msrp_stats  
 ```
 **Task.5 Data Visualization Questions**  
@@ -132,5 +132,40 @@ plt.ylabel("EV Model")
 plt.title("top 5 EV Makes and Models by Count")
 plt.show()
 ```
+3.Create a line graph showing the trend of EV adoption by model year.  
+```python
+model_trend = df.groupby("Model Year").size().reset_index(name="EV count")
+model_trend
+plt.figure(figsize=(10,5))
+sns.lineplot(x="Model Year",y="EV count",data =model_trend, marker = "o" )
+plt.xlabel("Model Year")
+plt.ylabel("EV count")
+plt.title("Trend of EV adoption by model year")
+plt.grid(True)
+plt.show()
+```
+4.Generate a scatter plot comparing electric range vs. base MSRP to see pricing trends.  
+```python
+df_cleaned = df[["Electric Range","Base MSRP"]]
+df_cleaned
+plt.figure(figsize = (10,5))
+sns.scatterplot(x="Electric Range",y="Base MSRP",data = df_cleaned ,alpha = 0.7)
+plt.xlabel("Electric Range ")
+plt.ylabel ("Base MSRP")
+plt.title("electric range vs. base MSRP")
+plt.grid(True)
+plt.show()
+```
+5.Plot a pie chart showing the proportion of CAFV-eligible vs. non-eligible EVs.  
+```python
+cafv_counts = df["Clean Alternative Fuel Vehicle (CAFV) Eligibility"].value_counts()  
+labels = cafv_counts.index  
+sizes = cafv_counts.values  
+plt.figure(figsize=(5,5))  
+plt.pie(sizes, labels = labels,autopct="%1.1f%%",colors = ["#66b3ff","#ff9999"], startangle = 140, wedgeprops={"edgecolor":"black"})  
+plt.title("cafv")  
+plt.show()  
+```
+
 
 
