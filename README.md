@@ -36,6 +36,26 @@ total_missing_values = df.isna().sum().sum()
 missing_values _in each column = df.isna().sum()  
 missing_values _in each column [missing_values _in each column>0]  
 ```
-
-
+2.How should missing or zero values in the Base MSRP and Electric Range columns be handled.  
+->Here Zero Values are considering as Missing Values and converting Zero values in to Missing values and replacing NAN values with median  
+```python
+print("initial nan count:",df['Base MSRP'].isnull().sum())  
+zero_count = (df["Base MSRP"]==0).sum()  
+print("initial zer count:",zero_count )  
+print("median before converting zer to nan :",df['Base MSRP'].median())  
+df.loc[df['Base MSRP'] == 0, 'Base MSRP'] = np.nan  
+zero_count = (df["Base MSRP"]==0).sum()  
+print("after conversion zero count:",zero_count )  
+```
+NOTE: After converting zero values into nan values and after when we replace nan values with median for the whole data  but NAN is replaced
+ to over come this  
+```python
+median_value=(df.loc[df["Base MSRP"]>0,"Base MSRP"].median())  
+if not np.isnan(median_value):  
+    df['Base MSRP'].fillna(median_value,inplace = True)  
+else:  
+    print("error:median is NAN  Value")  
+print("nan values after replacing with median value:",df['Base MSRP'].isnull().sum())  
+print(df['Base MSRP'].median())  
+```
   
