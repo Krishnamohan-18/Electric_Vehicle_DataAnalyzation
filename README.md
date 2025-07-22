@@ -37,7 +37,7 @@ missing_values _in each column = df.isna().sum()
 missing_values _in each column [missing_values _in each column>0]  
 ```
 2.How should missing or zero values in the Base MSRP and Electric Range columns be handled.  
- **Base MSRP - Missing Values Handling**
+ **Base MSRP - Missing Values Handling**  
 ->Here Zero Values are considering as Missing Values and converting Zero values in to Missing values and replacing NAN values with median  
 ```python
 print("initial nan count:",df['Base MSRP'].isnull().sum())  
@@ -72,5 +72,65 @@ else:
     print("error:median is NAN  Value")  
 
  ```
-  
+ **Duplicates in Dataset**  
+ VIN number is the key column in the dataset , where VIN number should not be duplicate number because No, two vehicles cannot have the same Vehicle Identification Number (VIN) as it is a unique identifier for each individual motor vehicle.  
+ ```python  
+duplicate_records = df[df.duplicated(subset=["VIN (1-10)"])]   
+print(duplicate_records)  
+EV_cleaned = df.drop_duplicates(subset=["VIN (1-10)"],keep = 'first')  
+```
+**Task 4.Data Exploration Questions**  
+1.What are the top 5 most common EV makes and models in the dataset?  
+````python
+top_make_model = df.groupby(["Make","Model"]).size().reset_index(name="count")   
+ top_5_ev_models = top_make_model.sort_values(by="count",ascending = False).head(5)    
+ top_5_ev_models   
+```
+2.What is the distribution of EVs by county? Which county has the most registrations
+```python  
+county = df["County"].value_counts()
+most_ev_county = county.idxmax()
+```
+3.What is the average electric range of EVs in the dataset?  
+```python  
+print("median value:",df.loc[df["Electric Range"]>0,"Electric Range"].median())  
+df.loc[df['Electric Range'] == 0, 'Electric Range'] = np.nan  
+zero_count = (df["Electric Range"]==0).sum()  
+zero_count  
+df["Electric Range"].isna().sum()  
+median_value=(df.loc[df["Electric Range"]>0,"Electric Range"].median())  
+if not np.isnan(median_value):  
+    df["Electric Range"].fillna(median_value,inplace = True)  
+else:  
+    print("error:median is NAN  Value")  
+print(df["Electric Range"].mean())  
+```
+5.What percentage of EVs are eligible for Clean Alternative Fuel Vehicle (CAFV) incentives?  
+```python
+df[" Clean Alternative Fuel Vehicle (CAFV) Eligibility"].value_counts()
+eligible_count = df[df["Clean Alternative Fuel Vehicle (CAFV) Eligibility"]=="Clean Alternative Fuel Vehicle Eligible"].shape[0]  
+total_count = df.shape[0]  
+elibible_percentage = (eligible_count/total_count)*100  
+elibible_percentage  
+```
+6. What is the average Base MSRP for each EV model?
+ ```python
+msrp_stats = df.groupby(["Make".,"Mode"]("Base MSRP").mean().reset_index()  
+msrp_stats  
+```
+**Task.5 Data Visualization Questions**  
+1. Create a bar chart showing the top 5 EV makes and models by count.
+```python
+ev_counts=df.groupby(["Make","Model"]).size().reset_index(name="count")
+top_5_ev_models = ev_counts.sort_values(by="count",ascending=False).head(5)
+top_5_ev_models
+
+plt.figure(figsize=(10, 6))
+sns.barplot(y="Model",x="count", hue="Make",data = top_5_ev_models,dodge=False)
+plt.xlabel("Number of EVs")
+plt.ylabel("EV Model")
+plt.title("top 5 EV Makes and Models by Count")
+plt.show()
+```
+
 
