@@ -30,13 +30,14 @@ df.head()
 df.tail()  
 ```
 **Task 3.Data Cleaning**  
-1.How many missing values exist in the dataset, and in which columns?  
+1.How many missing values exist in the dataset, and in which columns? 
 ```python
 total_missing_values = df.isna().sum().sum()  
 missing_values _in each column = df.isna().sum()  
 missing_values _in each column [missing_values _in each column>0]  
 ```
 2.How should missing or zero values in the Base MSRP and Electric Range columns be handled.  
+ **Base MSRP - Missing Values Handling**
 ->Here Zero Values are considering as Missing Values and converting Zero values in to Missing values and replacing NAN values with median  
 ```python
 print("initial nan count:",df['Base MSRP'].isnull().sum())  
@@ -58,4 +59,18 @@ else:
 print("nan values after replacing with median value:",df['Base MSRP'].isnull().sum())  
 print(df['Base MSRP'].median())  
 ```
+**Electric Range -Missing Values Handling.**  
+```python  
+ print("median value:",df.loc[df["Electric Range"]>0,"Electric Range"].median())  
+df.loc[df['Electric Range'] == 0, 'Electric Range'] = np.nan  
+zero_count = (df["Electric Range"]==0).sum()  
+df["Electric Range"].isna().sum()  
+median_value=(df.loc[df["Electric Range"]>0,"Electric Range"].median())  
+if not np.isnan(median_value):  
+    df["Electric Range"].fillna(median_value,inplace = True)  
+else:  
+    print("error:median is NAN  Value")  
+
+ ```
   
+
