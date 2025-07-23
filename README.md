@@ -4,8 +4,8 @@ This project explores and analyzes electric vehicle registration and population 
 # Objective   
 The primary objectives of this Electric Vehicle (EV) data analysis project are:  
 
--> To understand the structure, quality, and completeness of EV registration data. 
--> To identify and handle missing or duplicate records. 
+-> To understand the structure, quality, and completeness of EV registration data.  
+-> To identify and handle missing or duplicate records.  
 -> To analyze electric vehicle registrations across counties and cities.  
 -> To calculate electric range distributions and explore CAFV eligibility.  
 -> To examine average Base MSRP values across various EV models.  
