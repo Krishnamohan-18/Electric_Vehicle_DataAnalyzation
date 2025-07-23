@@ -2,9 +2,14 @@
 **Project Title:** Electric Vehicle Data Analysis  
 This project explores and analyzes electric vehicle registration and population trends using publicly available datasets.  
 # Objective   
-1.Understand EV adoption trends across regions and time.  
-2.Identify top EV models, manufacturers, and growth patterns.  
-3.Use data visualization to make insights actionable.  
+The primary objectives of this Electric Vehicle (EV) data analysis project are:  
+
+-> To understand the structure, quality, and completeness of EV registration data. 
+-> To identify and handle missing or duplicate records. 
+-> To analyze electric vehicle registrations across counties and cities. 
+-> To calculate electric range distributions and explore CAFV eligibility. 
+-> To examine average Base MSRP values across various EV models. 
+-> To visually represent trends and patterns through data visualizations.  
 # Dataset  
 **Source**:Kaggle  
 **Tools Used**    
@@ -167,6 +172,9 @@ plt.pie(sizes, labels = labels,autopct="%1.1f%%",colors = ["#66b3ff","#ff9999"],
 plt.title("cafv")  
 plt.show()  
 ```
-
+# Conclusion
+This project provides insights into electric vehicle adoption across counties, including key trends in range, pricing, and eligibility.  
+Data cleaning steps like handling missing values and removing duplicates ensured accurate analysis.  
+Visualizations highlighted patterns in EV registrations, supporting informed decision-making for stakeholders.  
 
 
